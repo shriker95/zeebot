@@ -32,8 +32,7 @@ def chat_with_openai(prompt, personality):
 
 class Bot(commands.Bot):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self):
         self.last_used = {}  # Initialize the dictionary to track command usage time
         self.cooldown_period = timedelta(seconds=30)
 
