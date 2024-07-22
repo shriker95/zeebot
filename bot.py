@@ -2,6 +2,7 @@ from twitchio.ext import commands
 import openai
 from dotenv import load_dotenv
 import os
+from datetime import datetime, timedelta
 
 load_dotenv() 
 
@@ -31,39 +32,37 @@ def chat_with_openai(prompt, personality):
 
 class Bot(commands.Bot):
 
-    def __init__(self):
-        # Initialise our Bot with our access token, prefix and a list of channels to join on boot...
-        # prefix can be a callable, which returns a list of strings or a string...
-        # initial_channels can also be a callable which returns a list of strings...
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.last_used = {}  # Initialize the dictionary to track command usage time
+        self.cooldown_period = timedelta(seconds=30)
+
         super().__init__(token=twitch_token, prefix='!', initial_channels=[twitch_channel], client_secret=twitch_client_secret, )
 
     async def event_ready(self):
-        # Notify us when everything is ready!
-        # We are logged in and ready to chat and use commands...
         print(f'Logged in as | {self.nick}')
         print(f'User id is | {self.user_id}')
 
     async def event_message(self, message):
-        # Messages with echo set to True are messages sent by the bot...
-        # For now we just want to ignore them...
         if message.echo:
             return
-
-        # Print the contents of our message to console...
         print(message.content)
-
-        # Since we have commands and are overriding the default `event_message`
-        # We must let the bot know we want to handle and invoke our commands...
         await self.handle_commands(message)
 
     @commands.command()
     async def zee(self, ctx: commands.Context):
-        # Here we have a command hello, we can invoke our command with our prefix and command name
-        # e.g ?hello
-        # We can also give our commands aliases (different names) to invoke with.
+        user_id = ctx.author.id  # Or ctx.channel.id if you want the cooldown to be channel-specific
+        now = datetime.now()
 
-        # Send a hello back!
-        # Sending a reply back to the channel is easy... Below is an example.
+        # Check if the command is on cooldown
+        if user_id in self.last_used and now - self.last_used[user_id] < self.cooldown_period:
+            cooldown_remaining = (self.cooldown_period - (now - self.last_used[user_id])).total_seconds()
+            await ctx.send(f"This command is on cooldown. Please wait {cooldown_remaining:.0f} seconds.")
+            return
+
+        # Update the last used time
+        self.last_used[user_id] = now
+
         print(ctx.message.content)
         prompt = ctx.message.content[len('!zee'):].strip()
         print(prompt)
