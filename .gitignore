@@ -1,4 +1,8 @@
+_pycache/
 include/
+bin/
+lib/
+ilinclib64lude/
 Lib/
 Scripts/
 .env
