@@ -1,3 +1,4 @@
+"""Twitch bot that uses OpenAI's GPTs to chat with viewers."""
 import os
 from datetime import datetime, timedelta
 from twitchio.ext import commands
@@ -40,8 +41,8 @@ class Bot(commands.Bot):
         self.last_used = {}  # Initialize the dictionary to track command usage time
         self.cooldown_period = timedelta(seconds=30)
 
-        super().__init__(token=twitch_token, prefix='!', 
-                         initial_channels=[twitch_channel], 
+        super().__init__(token=twitch_token, prefix='!',
+                         initial_channels=[twitch_channel],
                          client_secret=twitch_client_secret, )
 
     async def event_ready(self):
