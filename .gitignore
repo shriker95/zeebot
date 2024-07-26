@@ -2,7 +2,8 @@ _pycache/
 include/
 bin/
 lib/
-lib64/
+lib64/*
+lib64
 Lib/
 Scripts/
 .env
