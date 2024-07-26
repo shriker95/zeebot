@@ -2,7 +2,7 @@ _pycache/
 include/
 bin/
 lib/
-ilinclib64lude/
+lib64/
 Lib/
 Scripts/
 .env
