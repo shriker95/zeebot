@@ -38,7 +38,7 @@ class Bot(commands.Bot):
     """Twitch bot that uses OpenAI's GPTs to chat with viewers."""
     def __init__(self):
         """Initialize the bot with the Twitch token, channel, and client secret."""
-        self.last_used = datetime.datetime()
+        self.last_used = datetime.min
         self.cooldown_period = timedelta(seconds=300)
 
         super().__init__(token=twitch_token, prefix='!',
@@ -66,7 +66,7 @@ class Bot(commands.Bot):
         # pylint: disable=line-too-long
         if now - self.last_used < self.cooldown_period:
             # pylint: disable=line-too-long
-            cooldown_remaining = self.cooldown_period - (now - self.last_used).total_seconds()
+            cooldown_remaining = (self.cooldown_period - (now - self.last_used)).total_seconds()
             # pylint: disable=line-too-long
             await ctx.send(f"Hetze mich nicht! Warter noch {cooldown_remaining:.0f} Sekunden.")
             return
