@@ -38,7 +38,7 @@ class Bot(commands.Bot):
     """Twitch bot that uses OpenAI's GPTs to chat with viewers."""
     def __init__(self):
         """Initialize the bot with the Twitch token, channel, and client secret."""
-        self.last_used = datetime
+        self.last_used = datetime.now()
         self.cooldown_period = timedelta(seconds=300)
 
         super().__init__(token=twitch_token, prefix='!',
