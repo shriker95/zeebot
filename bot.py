@@ -38,7 +38,7 @@ class Bot(commands.Bot):
     """Twitch bot that uses OpenAI's GPTs to chat with viewers."""
     def __init__(self):
         """Initialize the bot with the Twitch token, channel, and client secret."""
-        self.last_used = {}  # Initialize the dictionary to track command usage time
+        self.last_used = datetime
         self.cooldown_period = timedelta(seconds=300)
 
         super().__init__(token=twitch_token, prefix='!',
@@ -60,20 +60,19 @@ class Bot(commands.Bot):
     @commands.command()
     async def zee(self, ctx: commands.Context):
         """Chat as Zee using OpenAI's GPT."""
-        user_id = ctx.author.id  # Or ctx.channel.id if you want the cooldown to be channel-specific
         now = datetime.now()
 
         # Check if the command is on cooldown
         # pylint: disable=line-too-long
-        if user_id in self.last_used and now - self.last_used[user_id] < self.cooldown_period:
+        if now - self.last_used < self.cooldown_period:
             # pylint: disable=line-too-long
-            cooldown_remaining = (self.cooldown_period - (now - self.last_used[user_id])).total_seconds()
+            cooldown_remaining = self.cooldown_period - (now - self.last_used).total_seconds()
             # pylint: disable=line-too-long
             await ctx.send(f"Hetze mich nicht! Warter noch {cooldown_remaining:.0f} Sekunden.")
             return
 
         # Update the last used time
-        self.last_used[user_id] = now
+        self.last_used = now
 
         print(ctx.message.content)
         prompt = ctx.message.content[len('!zee'):].strip()
