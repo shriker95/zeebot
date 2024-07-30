@@ -68,7 +68,7 @@ class Bot(commands.Bot):
             # pylint: disable=line-too-long
             cooldown_remaining = (self.cooldown_period - (now - self.last_used)).total_seconds()
             # pylint: disable=line-too-long
-            await ctx.send(f"Hetze mich nicht! Warter noch {cooldown_remaining:.0f} Sekunden.")
+            await ctx.send(f"Hetze mich nicht! Warte noch {cooldown_remaining:.0f} Sekunden.")
             return
 
         # Update the last used time
