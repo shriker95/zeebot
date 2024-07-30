@@ -39,7 +39,7 @@ class Bot(commands.Bot):
     def __init__(self):
         """Initialize the bot with the Twitch token, channel, and client secret."""
         self.last_used = {}  # Initialize the dictionary to track command usage time
-        self.cooldown_period = timedelta(seconds=30)
+        self.cooldown_period = timedelta(seconds=300)
 
         super().__init__(token=twitch_token, prefix='!',
                          initial_channels=[twitch_channel],
