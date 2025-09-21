@@ -45,9 +45,15 @@ class Bot(commands.Bot):
         self.last_used = datetime.min
         self.cooldown_period = timedelta(seconds=timeout)
 
-        super().__init__(token=twitch_token, prefix='!',
-                         initial_channels=[twitch_channel],
-                         client_secret=twitch_client_secret, )
+        super().__init__(
+            client_id=client_id,
+            client_secretclient_secret,
+            bot_id=bot_id,
+            owner_id=owner_id,
+            prefix='!',
+            initial_channels=[twitch_channel],
+            force_subscribe=True,
+        )
 
     async def event_ready(self):
         """Print a message when the bot is ready."""
