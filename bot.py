@@ -5,6 +5,7 @@ from twitchio import eventsub
 from twitchio.ext import commands
 from mistralai import Mistral
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
