@@ -54,6 +54,13 @@ class Bot(commands.Bot):
             initial_channels=[twitch_channel],
             force_subscribe=True,
         )
+    async def setup_hook(self) -> None:
+
+        payload = eventsub.ChatMessageSubscription(broadcaster_user_id=self.owner_id, user_id=self.bot_id)
+        await self.subscribe_websocket(payload=payload)
+
+        await self.add_component(SimpleCommands(self))
+        LOGGER.info("Finished setup hook!")
 
     async def event_ready(self):
         """Print a message when the bot is ready."""
