@@ -1,6 +1,7 @@
 """Twitch bot that uses OpenAI's GPTs to chat with viewers."""
 import os
 from datetime import datetime, timedelta
+from twitchio import eventsub
 from twitchio.ext import commands
 from mistralai import Mistral
 from dotenv import load_dotenv
