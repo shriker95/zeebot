@@ -18,9 +18,9 @@ mistral_model = os.getenv("MISTRAL_MODEL")
 twitch_channel = os.getenv("TWITCH_CHANNEL")
 timeout = int(os.getenv("TIMEOUT"))
 client_id = os.getenv("CLIENT_ID")
-CLIENT_SECRET = os.getenv("CLIENT_SECRET")
-BOT_ID = os.getenv("BOT_ID")
-OWNER_ID = os.getenv("OWNER_ID")
+client_secret = os.getenv("CLIENT_SECRET")
+bot_id = os.getenv("BOT_ID")
+owner_id = os.getenv("OWNER_ID")
 
 
 client = Mistral(api_key=mistral_api_key)
