@@ -57,7 +57,6 @@ class Bot(commands.Bot):
 
     async def event_ready(self):
         """Print a message when the bot is ready."""
-        print(f'Logged in as | {self.nick}')
         print(f'User id is | {self.user_id}')
 
     async def event_message(self, message):
