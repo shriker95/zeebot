@@ -57,7 +57,7 @@ class Bot(commands.Bot):
 
     async def event_ready(self):
         """Print a message when the bot is ready."""
-        print(f'User id is | {self.user_id}')
+        print(f'User id is | {self.bot_id}')
 
     async def event_message(self, message):
         """Handle incoming messages."""
