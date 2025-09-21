@@ -23,6 +23,7 @@ client_secret = os.getenv("CLIENT_SECRET")
 bot_id = os.getenv("BOT_ID")
 owner_id = os.getenv("OWNER_ID")
 
+LOGGER: logging.Logger = logging.getLogger("Bot")
 
 client = Mistral(api_key=mistral_api_key)
 
@@ -52,8 +53,6 @@ class Bot(commands.Bot):
             bot_id=bot_id,
             owner_id=owner_id,
             prefix='!',
-            initial_channels=[twitch_channel],
-            force_subscribe=True,
         )
     async def setup_hook(self) -> None:
 
