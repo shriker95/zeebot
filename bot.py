@@ -47,7 +47,7 @@ class Bot(commands.Bot):
 
         super().__init__(
             client_id=client_id,
-            client_secretclient_secret,
+            client_secret=client_secret,
             bot_id=bot_id,
             owner_id=owner_id,
             prefix='!',
