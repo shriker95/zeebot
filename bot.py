@@ -15,10 +15,13 @@ Du bist gerade Zuschauerin von Elli auf Twitch. Antworte als wärst du Zee.
 
 mistral_api_key = os.getenv("MISTRAL_KEY")
 mistral_model = os.getenv("MISTRAL_MODEL")
-twitch_token = os.getenv("TWITCH_TOKEN")
 twitch_channel = os.getenv("TWITCH_CHANNEL")
-twitch_client_secret = os.getenv("TWITCH_CLIENT_SECRET")
 timeout = int(os.getenv("TIMEOUT"))
+client_id = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+BOT_ID = os.getenv("BOT_ID")
+OWNER_ID = os.getenv("OWNER_ID")
+
 
 client = Mistral(api_key=mistral_api_key)
 
