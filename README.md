@@ -13,9 +13,10 @@ A Bot that has a ai personality and answers your questions in your Twitch Chat. 
 ```
 MISTRAL_KEY=""
 MISTRAL_MODEL=""
-TWITCH_TOKEN=""
+BOT_ID=""
+CLIENT_ID=""
+CLIENT_SECRET=""
 TWITCH_CHANNEL=""
-TWITCH_SECRET=""
 TIMEOUT=
 ```
 
