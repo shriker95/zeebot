@@ -9,3 +9,4 @@ Scripts/
 .env
 pyvenv.cfg
 settings.txt
+.tio.tokens.json
